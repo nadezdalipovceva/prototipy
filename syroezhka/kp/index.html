@@ -1,0 +1,71 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Сыроежка — анализ и предложение</title><style>
+/* Роли цветов постоянные, значения — под клиента: акцент из логотипа или обложки группы */
+:root{
+  --sage:#5F7A5C; --sage-dark:#26302A; --sage-ink:#46604A; --gold:#A8762A; --mint:#CFE3CB;
+  --bg:#FBF9F6; --paper:#fff; --ink:#23241F; --muted:#666A63; --line:#E3DFD3; --tint:#EFF3EC; --warn:#FBF3E2;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16.5px/1.65 Manrope,system-ui,sans-serif}
+.wrap{max-width:820px;margin:0 auto;padding:0 28px}
+h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;line-height:1.15;margin:0}
+h1{font-size:46px;margin-bottom:16px}
+h2{font-size:32px;margin:0 0 6px}
+h3{font-size:22px;margin:0 0 6px}
+p{margin:11px 0}
+.sub{color:var(--muted);font-size:14.5px}
+p.sub{max-width:72ch}
+header{background:var(--sage-dark);color:#fff;padding:56px 0 48px}
+header .eyebrow{letter-spacing:3.4px;text-transform:uppercase;font-size:12px;color:var(--mint);margin-bottom:18px}
+header h1{color:#fff;max-width:24ch}
+header p{color:#E4E9E1;max-width:64ch}
+header .sub{color:#AEB9AE;margin-top:20px}
+header a{color:#E4E9E1}
+section{padding:46px 0 6px}
+.sec-num{display:block;width:max-content;font-size:12px;letter-spacing:2.6px;text-transform:uppercase;color:var(--sage);border-bottom:2px solid var(--sage);padding-bottom:5px;margin-bottom:16px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:13px;padding:22px 24px;margin:14px 0}
+.card .n{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:var(--sage);line-height:1;margin-bottom:6px}
+.grid.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:760px){.grid.two{grid-template-columns:1fr} h1{font-size:36px}}
+.adv{list-style:none;padding:0;margin:14px 0}
+.adv li{padding:11px 0 11px 26px;border-bottom:1px solid var(--line);position:relative}
+.adv li:before{content:"";position:absolute;left:4px;top:21px;width:7px;height:7px;border-radius:50%;background:var(--gold)}
+.adv li:last-child{border:0}
+.why{background:var(--tint);border-left:3px solid var(--sage);border-radius:0 9px 9px 0;padding:11px 16px;margin-top:12px;font-size:15.5px}
+.seg{background:var(--paper);border:1px solid var(--line);border-radius:13px;padding:18px 22px;margin:12px 0}
+.tag{display:inline-block;background:var(--tint);color:var(--sage-ink);font-size:12.5px;letter-spacing:.4px;padding:3px 11px;border-radius:999px;margin-bottom:8px}
+.src{color:var(--muted);font-size:14px;margin-top:2px}
+.note{background:var(--warn);border-radius:12px;padding:16px 20px;margin:18px 0;font-size:15.5px}
+.note strong{color:#7A5A22}
+ol.tasks{padding-left:22px}
+ol.tasks li{margin:12px 0}
+.cta{background:var(--sage-dark);color:#fff;border-radius:16px;padding:34px;text-align:center;margin:22px 0}
+.cta h3{color:#fff;font-size:28px}
+.cta a.btn{display:inline-block;background:var(--mint);color:var(--sage-dark);padding:14px 30px;border-radius:999px;text-decoration:none;font-weight:700;margin-top:14px}
+.cta .url{display:block;margin-top:13px;color:#D6DED4;font-size:15px;word-break:break-all}
+.cta p{color:#DCE3DA;max-width:56ch;margin:0 auto}
+.offer{background:var(--paper);border:1px solid var(--line);border-radius:13px;padding:22px 24px;margin:14px 0}
+.offer-main{border:2px solid var(--sage);background:#FAFCF8}
+.badge{display:inline-block;background:var(--sage);color:#fff;font-size:12px;letter-spacing:1.4px;text-transform:uppercase;padding:3px 11px;border-radius:6px;margin-bottom:9px}
+blockquote{margin:14px 0;padding:14px 20px;background:var(--paper);border-left:3px solid var(--gold);border-radius:0 9px 9px 0;font-style:italic;color:#353B36}
+footer{margin-top:56px;padding:30px 0 60px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+footer p{max-width:70ch}
+footer a{color:var(--sage-dark)}
+@media print{
+  body{background:#fff;font-size:11.5pt}
+  .wrap{max-width:100%;padding:0 14mm}
+  header{padding:16mm 0 11mm;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  section{padding:7mm 0 0}
+  h2{margin-top:2mm}
+  .adv li{padding:7px 0 7px 24px}
+  p{margin:8px 0}
+  .card,.seg,.offer,.cta,.note,.why,blockquote{page-break-inside:avoid;break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  h2,h3,.sec-num{page-break-after:avoid;break-after:avoid}
+  .card,.seg,.offer{padding:16px 20px;margin:10px 0}
+  .why{margin-top:9px;padding:9px 14px}
+  .cta{padding:24px;margin:16px 0}
+  footer{margin-top:28px;padding:18px 0 20px}
+  h1{font-size:28pt}h2{font-size:20pt}h3{font-size:14pt}
+  a{color:inherit;text-decoration:none}
+  @page{margin:0}
+}
+</style></head><body><header><div class="wrap"><div class="eyebrow">Анализ и&nbsp;предложение · Сыроежка</div><h1>«Сыроежка»: от&nbsp;группы к&nbsp;удобной витрине</h1><p>Надежда, в&nbsp;основе предложения&nbsp;— ваши 9 постов, 4 комментария и&nbsp;присланные отзывы. Сайт может собрать ассортимент, условия получения и&nbsp;тёплую историю сыроварни в&nbsp;одном месте.</p><p class="sub">17 ноября 2026 · <a href="https://vk.ru/club242147455">Группа ВКонтакте</a>. MAX и&nbsp;Instagram не&nbsp;удалось прочитать; их&nbsp;содержание не&nbsp;использовалось.</p></div></header><div class="wrap"><section><span class="sec-num">01 · Выводы</span><h2>Пять опор для&nbsp;сайта</h2><div class="card"><div class="n">01</div><h3>Сайты в&nbsp;этой&nbsp;нише уже&nbsp;есть</h3><p>У&nbsp;«Золотой Адыгеи» есть каталог, карточка сулугуни и&nbsp;корзина. Предлагать вам сайт как&nbsp;незанятую нишу было&nbsp;бы неверно. Его&nbsp;задача&nbsp;— удобно представить именно вашу домашнюю сыроварню.</p></div><div class="card"><div class="n">02</div><h3>Ассортимент уже&nbsp;готов для&nbsp;витрины</h3><p>В&nbsp;посте от&nbsp;2 ноября указаны четыре позиции, цены, вес и&nbsp;минимальный объём заказа. Эти&nbsp;данные можно вынести из&nbsp;ленты в&nbsp;постоянные карточки.</p></div><div class="card"><div class="n">03</div><h3>Заказ начинается с&nbsp;переписки</h3><p>В&nbsp;том&nbsp;же посте вы&nbsp;предлагаете написать слово «Сыр». Прототип помогает собрать такой запрос, а&nbsp;дату и&nbsp;итоговую стоимость вы&nbsp;подтверждаете лично.</p></div><div class="card"><div class="n">04</div><h3>Условия получения опубликованы</h3><p>Самовывоз&nbsp;— у&nbsp;метро «Бульвар Рокоссовского», точный адрес&nbsp;— лично. Курьер по&nbsp;договорённости оплачивается отдельно. Эти&nbsp;условия видны до&nbsp;начала переписки.</p></div><div class="card"><div class="n">05</div><h3>Есть первые подтверждения доверия</h3><p>В&nbsp;комментарии №12 под&nbsp;постом №7 покупатель благодарит за&nbsp;сыр и&nbsp;пишет о&nbsp;новом заказе. В&nbsp;присланном скриншоте есть ещё&nbsp;два отзыва о&nbsp;сыре; общий рейтинг по&nbsp;ним не&nbsp;выводим.</p></div></section><section><span class="sec-num">02 · Преимущества</span><h2>Уже&nbsp;есть о&nbsp;чём рассказать</h2><p class="sub">Эти&nbsp;преимущества заявлены в&nbsp;ваших постах №1, №3 и&nbsp;№10; это&nbsp;не&nbsp;независимая проверка производства.</p><ul class="adv"><li><b>Личный мастер.</b> Вы&nbsp;представляетесь по&nbsp;имени и&nbsp;сами готовите сыр.</li><li><b>Ручная работа.</b> «Каждую головку я&nbsp;вымешиваю и&nbsp;прессую сама».</li><li><b>Цельное молоко.</b> Вы&nbsp;указываете цельное коровье молоко от&nbsp;проверенных фермеров.</li><li><b>Небольшие партии.</b> Такой формат описан в&nbsp;посте №3.</li><li><b>Приготовление под&nbsp;заказ.</b> Это&nbsp;прямо указано в&nbsp;посте №10.</li><li><b>Выбор вкусов.</b> Классический адыгейский и&nbsp;вариант с&nbsp;томатами, базиликом и&nbsp;чесноком.</li><li><b>Пожелания по&nbsp;соли.</b> В&nbsp;посте №10 предлагаете слабосолёный вкус по&nbsp;запросу.</li><li><b>Понятное получение.</b> Есть ориентир для&nbsp;самовывоза и&nbsp;возможность договориться о&nbsp;курьере.</li></ul></section><section><span class="sec-num">03 · Текущая ситуация</span><h2>Что&nbsp;работает и&nbsp;что&nbsp;можно усилить</h2><div class="grid two"><div class="card"><h3>Что&nbsp;работает</h3><p>Личная история мастера, реальные цены и&nbsp;веса, описания вкуса, условия получения и&nbsp;благодарность покупателя. Всё это&nbsp;уже&nbsp;даёт материал для&nbsp;компактного сайта.</p></div><div class="card"><h3>Что&nbsp;можно усилить</h3><p>В&nbsp;поле «сайт» группы нет&nbsp;ссылки. Это&nbsp;не&nbsp;доказывает, что&nbsp;отдельного сайта не&nbsp;существует. Каталог и&nbsp;получение сейчас описаны в&nbsp;посте: на&nbsp;сайте они&nbsp;могут быть доступны без&nbsp;поиска по&nbsp;ленте.</p></div></div><p class="sub">Среди четырёх комментариев нет&nbsp;вопросов покупателей. Поэтому выводы о&nbsp;«частых проблемах», потерянных заказах или&nbsp;росте продаж не&nbsp;делаем.</p></section><section><span class="sec-num">04 · Конкурентная среда</span><h2>Покупателю уже&nbsp;есть с&nbsp;чем&nbsp;сравнить</h2><div class="card"><h3>«Золотая Адыгея»</h3><p>Есть сайт, карточка продукта и&nbsp;корзина. Сулугуни указан по&nbsp;1&nbsp;300&nbsp;₽ за&nbsp;1&nbsp;000 г&nbsp;— цена за&nbsp;килограмм совпадает с&nbsp;вашей. Это&nbsp;не&nbsp;основание обещать преимущество по&nbsp;цене.</p><a href="https://zolotaya-adygeya.ru/product/suluguni-2/">Карточка сулугуни ↗</a></div><div class="card"><h3>«Своё Родное»</h3><p>Альтернативный канал покупки фермерских сыров: поиск, корзина и&nbsp;фильтры по&nbsp;доставке. С&nbsp;вашей витриной можно сделать проще путь к&nbsp;конкретному мастеру и&nbsp;его&nbsp;небольшому ассортименту.</p><a href="https://svoe-rodnoe.ru/farmers/soft-cheeses">Категория мягких сыров ↗</a></div><p class="sub">Проверено 17.11.2026. Карточка «Сыроежки» на&nbsp;картах, её&nbsp;подтверждение владельцем, рейтинг и&nbsp;расстояния до&nbsp;конкурентов не&nbsp;установлены. Рейтинги маркетплейса не&nbsp;подменяют оценки на&nbsp;Яндекс Картах.</p></section><section><span class="sec-num">05 · Предложение</span><h2>Витрина с&nbsp;личным заказом</h2><p>Предлагаю компактный сайт: выбор из&nbsp;четырёх продуктов, отдельные карточки с&nbsp;ценой и&nbsp;весом, история Надежды, отзывы и&nbsp;условия получения. Покупатель выбирает позиции и&nbsp;получает текст для&nbsp;сообщения.</p><p>Далее он&nbsp;копирует запрос и&nbsp;отправляет его&nbsp;через&nbsp;группу. Вы&nbsp;договариваетесь о&nbsp;дате, количестве, пожеланиях по&nbsp;соли и&nbsp;получении. Это&nbsp;сохраняет опубликованный способ продажи.</p><p>До&nbsp;запуска нужно согласовать точные составы и&nbsp;сроки хранения, обновление цен, срок приготовления и&nbsp;контакт для&nbsp;прямой переписки. В&nbsp;прототипе эти&nbsp;неизвестные сведения не&nbsp;заменены обещаниями.</p><p>Стоимость разработки и&nbsp;срок реализации в&nbsp;этом предложении не&nbsp;назначены: они&nbsp;определяются после&nbsp;согласования объёма работ.</p></section><section><span class="sec-num">06 · Прототип</span><h2>Посмотрите, как&nbsp;это&nbsp;может работать</h2><p>В&nbsp;прототипе работают поиск, фильтры, карточки продуктов и&nbsp;сбор сообщения. Цены и&nbsp;условия взяты из&nbsp;вашего поста от&nbsp;02.11.2026; актуальность подтверждается при&nbsp;заказе.</p><p>Вместо фотографий&nbsp;— подписанные иллюстрации-заглушки. Палитра предварительная. Визуальные решения можно уточнить после&nbsp;обсуждения структуры.</p><div class="cta"><h3>«Сыроежка»&nbsp;— будущая витрина</h3><p>Дальше проще открыть и&nbsp;попробовать выбрать сыр.</p><a class="btn" href="../">Открыть прототип →</a><span class="url">https://nadezdalipovceva.github.io/prototipy/syroezhka/</span></div></section><footer>Подготовлено для&nbsp;«Сыроежки» · Подпись: Сыроежка<br>Источники: группа ВКонтакте, скриншот отзывов пользователя, страницы конкурентов по&nbsp;ссылкам выше.</footer></div></body></html>
