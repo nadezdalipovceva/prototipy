@@ -74,3 +74,8 @@ nav.category-choices>a,nav.bottom-nav>a{display:flex}nav.mobile-menu>a{display:b
   .flavour-caption button { width:44px; height:44px }
   .flavour-print::before { width:56px; height:16px; top:-6px; left:calc(50% - 28px) }
 }
+
+@media (min-width:601px) and (max-width:850px) {
+  .site-header .brand > span { display:none }
+  .site-header nav a { white-space:nowrap }
+}
