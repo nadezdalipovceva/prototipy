@@ -7,7 +7,13 @@ function save(){try{localStorage.setItem('oops-cart-v2',JSON.stringify(cart))}ca
 const symbols={'Пастила':'≈','Фрипсы':'◌','Овощные чипсы':'✳','Джерки':'≋','Десерты':'✧','Чай':'❦','Сублимация':'✿','Подарки':'✳'};
 const art=p=>`<figure class="product-art photo-art"><img src="${esc(p.photo)}" alt="${esc(p.photoCaption)}" loading="lazy" width="600" height="750">${!p.photoExact?'<figcaption>Фото категории</figcaption>':''}</figure>`;
 function card(p){const v=p.variants[0];return `<article class="product-card"><a href="item.html?id=${encodeURIComponent(p.id)}">${art(p)}${p.id==='pastila-mix'?'<span class="product-badge">Знакомство<br>со вкусами</span>':''}<h3>${esc(p.name)}</h3><p>${v.price===null?'Наполнение обсудим с вами':esc(v.label)}</p></a><div class="card-bottom"><span class="price">${v.price===null?'По запросу':money(v.price)}</span>${v.price===null?`<a class="card-detail" href="item.html?id=${encodeURIComponent(p.id)}">Подробнее</a>`:`<button class="quick-add" data-add="${esc(p.id)}" aria-label="В корзину: ${esc(p.name)}, ${esc(v.label)}">+</button>`}</div></article>`}
-function add(id,vi){const found=cart.find(x=>x.id===id&&x.variant===vi);if(found){found.qty=Math.min(99,found.qty+1)}else cart.push({id,variant:vi,qty:1});save();toast('Добавлено в корзину')}
+function add(id,vi){const found=cart.find(x=>x.id===id&&x.variant===vi);if(found?.qty===99){toast('В корзине уже 99 упаковок этой фасовки');return false}if(found){found.qty=Math.min(99,found.qty+1)}else cart.push({id,variant:vi,qty:1});save();toast('Добавлено в корзину');
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const badge = $('#cart-count');
+    badge.getAnimations().forEach(animation => animation.cancel());
+    badge.animate([{transform:'scale(1)'},{transform:'scale(1.25)',offset:.35},{transform:'scale(1)'}],{duration:280});
+  }
+  return true}
 const page=document.body.dataset.page;
 if(page==='home'){
  $('#featured').innerHTML=['pastila-mix','frips-mix','jerky-mexico','honey-apples'].map(id=>card(product(id))).join('');
@@ -38,7 +44,66 @@ if(page==='checkout'){
 }
 function orderText(){return 'Здравствуйте! Хочу обсудить заказ:\n'+cart.map(x=>{const p=product(x.id),v=variant(x);return '• '+p.name+' — '+v.label+' × '+x.qty+(v.price===null?' (цена по запросу)':' — '+money(v.price*x.qty))}).join('\n')+'\nПодытог по прайсу: '+money(total())+' (без доставки и позиций по запросу).\nПодтвердите, пожалуйста, наличие, составы, итоговую стоимость и условия доставки.'}
 if(page==='thanks'){$('#order-text').value=cart.length?orderText():'Сначала соберите корзину в каталоге. Для реального заказа напишите в официальные сообщения бренда.';$('#copy-order').onclick=async()=>{try{await navigator.clipboard.writeText($('#order-text').value);toast('Состав заказа скопирован')}catch{$('#order-text').focus();$('#order-text').select();toast('Выделено: скопируйте текст вручную')}}}
-document.addEventListener('click',e=>{const b=e.target.closest('[data-add]');if(b){add(b.dataset.add,0);b.textContent='✓';setTimeout(()=>{b.textContent='+'},1400)}});
+document.addEventListener('click',e=>{const b=e.target.closest('[data-add]');if(b && add(b.dataset.add,0)){clearTimeout(Number(b.dataset.resetTimer));b.textContent='✓';b.dataset.resetTimer=setTimeout(()=>{b.textContent='+'},1400)}});
 const menu=document.querySelector('.menu-toggle');if(menu)menu.onclick=()=>{const expanded=menu.getAttribute('aria-expanded')==='true';menu.setAttribute('aria-expanded',String(!expanded));document.querySelector('#mobile-menu').hidden=expanded;menu.setAttribute('aria-label',expanded?'Открыть меню':'Закрыть меню')};
+function setupFlavourGallery() {
+  const cover = document.querySelector('.flavour-cover');
+  if (!cover) return;
+
+  const frame = cover.querySelector('.flavour-frame');
+  const link = cover.querySelector('.flavour-link');
+  const controls = cover.querySelector('.flavour-controls');
+  const firstImage = frame.querySelector('img');
+  const slides = [{
+    photo: firstImage.getAttribute('src'),
+    photoCaption: firstImage.alt,
+    name: link.textContent,
+    category: 'Подарки'
+  }, ...['pastila-mix', 'frips-mix', 'jerky-mexico'].map(product)];
+  let selected = 0;
+  let revision = 0;
+
+  async function turn(step) {
+    selected = (selected + step + slides.length) % slides.length;
+    const current = ++revision;
+    const slide = slides[selected];
+    const next = new Image();
+    next.className = 'flavour-image';
+    next.alt = slide.photoCaption;
+    next.src = slide.photo;
+    try {
+      await next.decode();
+    } catch {
+      if (current === revision) {
+        selected = Number(frame.dataset.slide || 0);
+        toast('Не удалось загрузить фотографию. Попробуйте ещё раз.');
+      }
+      return;
+    }
+    if (current !== revision) return;
+    frame.getAnimations({subtree: true}).forEach(animation => animation.cancel());
+    const previous = frame.lastElementChild;
+    frame.replaceChildren(previous, next);
+    frame.dataset.slide = String(selected);
+    link.textContent = slide.name;
+    link.href = 'catalog.html?category=' + encodeURIComponent(slide.category);
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches || !next.animate) {
+      previous.remove();
+      return;
+    }
+    const reveal = next.animate([
+      { clipPath: 'inset(0 ' + (step > 0 ? '100% 0 0' : '0 0 100%') + ' round 2px)', transform: 'scale(1.035)' },
+      { clipPath: 'inset(0 0 0 0 round 2px)', transform: 'scale(1)' }
+    ], { duration: 440, easing: 'cubic-bezier(.2,.8,.22,1)' });
+    reveal.finished.then(() => previous.remove(), () => {});
+  }
+  controls.hidden = false;
+  controls.addEventListener('click', event => {
+    const button = event.target.closest('[data-step]');
+    if (button) turn(Number(button.dataset.step));
+  });
+}
+setupFlavourGallery();
+
 save();
 })();
