@@ -95,19 +95,131 @@ body[data-page="home"] {
 }
 
 /* The two crops use the product composition from the approved sketches. */
-.campaign { height:auto; min-height:235px; aspect-ratio:4.45; background:#29450b }
-.campaign-photo { width:63%; object-fit:cover; object-position:center; mask-image:linear-gradient(to right,transparent,#000 9%); }
-.campaign-copy { padding:clamp(20px,2vw,38px) 5.4%; max-width:44% }
+.campaign { height:auto; min-height:235px; aspect-ratio:auto; background:#29450b }
+.campaign-photo { width:63%; object-fit:cover; object-position:center; mask-image:linear-gradient(to right,transparent 0%,rgb(0 0 0 / 7%) 6%,rgb(0 0 0 / 30%) 13%,rgb(0 0 0 / 68%) 22%,rgb(0 0 0 / 94%) 30%,#000 36%); }
+.campaign-copy { padding:clamp(20px,2vw,38px) 5.4% 60px; max-width:44% }
 .campaign h1 { font-size:clamp(38px,4.25vw,68px); margin:0 0 9px }
 .campaign p { font-size:clamp(15px,1.45vw,20px); margin-bottom:12px }
 @media(min-width:601px) and (max-width:850px) { .campaign {min-height:222px} .campaign-copy {max-width:48%} }
 @media(max-width:600px) {
-  .campaign { aspect-ratio:2.1; min-height:186px; border-radius:20px }
+  .campaign { aspect-ratio:auto; min-height:186px; border-radius:20px }
   .campaign-photo {width:60%;object-position:55% 50%}
-  .campaign-copy {padding:16px 4%;max-width:50%}
+  .campaign-copy {padding:16px 4% 42px;max-width:50%}
   .campaign h1 {font-size:clamp(25px,6.9vw,39px); margin-bottom:6px}
   .campaign p {font-size:clamp(12px,3.2vw,16px);line-height:1.24;margin-bottom:10px}
   .campaign .btn {font-size:clamp(12px,3vw,15px);padding:6px 12px;gap:5px;min-height:36px}
   .campaign .btn span {font-size:19px}
   .rind-wave {height:14px}
 }
+
+/* A packing slip on a green parcel, with a fruit sticker on the fold. */
+#delivery {
+  background:#244c30;
+  color:#fff8e8;
+  padding-block:clamp(44px,5vw,80px);
+}
+#delivery .shell {
+  display:grid;
+  grid-template-columns:minmax(0,.83fr) minmax(0,1.17fr);
+  grid-template-areas:"title slip" "terms slip";
+  gap:18px clamp(30px,6vw,100px);
+  align-items:start;
+}
+#delivery h2 {
+  grid-area:title;
+  align-self:end;
+  margin:0;
+  max-width:10em;
+  color:inherit;
+  font-size:clamp(34px,4.5vw,68px);
+  line-height:1.03;
+  letter-spacing:-.045em;
+  text-wrap:balance;
+}
+#delivery h2::before {
+  content:"";
+  display:block;
+  width:90px;
+  height:62px;
+  margin-bottom:16px;
+  background:url("assets/watermelon.svg") center / contain no-repeat;
+  transform:rotate(-14deg);
+}
+#delivery .price-note {
+  grid-area:terms;
+  border:0;
+  padding:0;
+  margin:0;
+  max-width:38ch;
+  font-size:14px;
+  line-height:1.6;
+  color:#e3ebd6;
+}
+#delivery .steps {
+  grid-area:slip;
+  position:relative;
+  display:block;
+  margin:0 0 8px;
+  padding:16px clamp(20px,3vw,48px) 21px;
+  background:#fff8e8;
+  border-radius:5px 5px 0 0;
+  color:#183d27;
+}
+#delivery .steps::before {
+  content:"";
+  position:absolute;
+  top:-9px;
+  left:calc(50% - 30px);
+  width:60px;
+  height:19px;
+  background:#f3c955;
+  transform:rotate(-4deg);
+}
+#delivery .steps::after {
+  content:"";
+  position:absolute;
+  inset:100% 0 auto;
+  height:8px;
+  background:linear-gradient(135deg,#fff8e8 25%,transparent 25%) 0 0/16px 16px,
+             linear-gradient(225deg,#fff8e8 25%,transparent 25%) 0 0/16px 16px;
+}
+#delivery .steps article {
+  display:grid;
+  grid-template-columns:40px minmax(0,1fr);
+  gap:4px 17px;
+  padding:20px 0;
+}
+#delivery .steps article + article { border-top:1px dashed #b8bda6 }
+#delivery .step-n {
+  grid-row:1 / 3;
+  width:40px;
+  height:40px;
+  color:#27412a;
+  background:#f1c660;
+  border-radius:45% 53% 46% 51%;
+}
+#delivery article:nth-child(2) .step-n { background:#f6a9ac }
+#delivery article:nth-child(3) .step-n { background:#c4dba0 }
+#delivery .steps h3 { margin:0; font-size:clamp(18px,1.6vw,24px); line-height:1.25; color:inherit }
+#delivery .steps p { margin:0; font-size:15px; line-height:1.55; color:#455641 }
+@media(max-width:700px) {
+  #delivery .shell { grid-template-columns:1fr; grid-template-areas:"title" "slip" "terms"; gap:23px }
+  #delivery h2 { max-width:none; padding-right:60px; position:relative; font-size:clamp(31px,7vw,42px); text-wrap:initial }
+  #delivery h2::before { position:absolute; right:0; top:3px; width:54px; height:40px; margin:0 }
+  #delivery .steps { padding:8px 19px 12px }
+  #delivery .steps article { grid-template-columns:32px minmax(0,1fr); gap:5px 13px; padding:16px 0 }
+  #delivery .step-n { width:32px; height:32px }
+  #delivery .price-note { max-width:54ch }
+}
+
+footer.shell {
+  background:#193a27;
+  color:#fff8e8;
+  border-top-color:#193a27;
+  box-shadow:0 0 0 100vmax #193a27;
+  clip-path:inset(0 -100vmax);
+}
+footer.shell a, footer.shell .brand span { color:inherit }
+footer.shell p, footer.shell .brand small { color:#d5e1d1 }
+footer.shell a:is(:hover,:focus-visible) { color:#f5ce70 }
+footer.shell a:focus-visible { outline:2px solid currentColor; outline-offset:4px }
