@@ -112,13 +112,32 @@ body[data-page="home"] {
   .rind-wave {height:14px}
 }
 
+
+.campaign-photo {
+  width:59%;
+  object-fit:contain;
+  object-position:right center;
+  mask-image:linear-gradient(to right,transparent,rgba(0,0,0,.22) 12%,#000 32%),linear-gradient(to bottom,transparent,#000 12%,#000 88%,transparent);
+  mask-composite:intersect;
+}
+@media(min-width:601px) {
+  .campaign-photo {width:auto; height:95%; top:2.5%; aspect-ratio:490 / 358}
+}
+@media(max-width:600px) {
+  .campaign-photo {width:62%; height:auto; top:50%; transform:translateY(-50%); aspect-ratio:490 / 358}
+}
 /* A packing slip on a green parcel, with a fruit sticker on the fold. */
 #delivery {
-  background:#244c30;
-  color:#fff8e8;
+  background:var(--cream);
+  color:var(--ink);
+  padding-inline:max(var(--delivery-gutter),calc((100% - 1312px)/2));
+  --delivery-gutter:64px;
   padding-block:clamp(44px,5vw,80px);
 }
 #delivery .shell {
+  background:var(--yellow);
+  border-radius:25px;
+  padding:clamp(24px,3.5vw,52px);
   display:grid;
   grid-template-columns:minmax(0,.83fr) minmax(0,1.17fr);
   grid-template-areas:"title slip" "terms slip";
@@ -153,7 +172,7 @@ body[data-page="home"] {
   max-width:38ch;
   font-size:14px;
   line-height:1.6;
-  color:#e3ebd6;
+  color:#31442d;
 }
 #delivery .steps {
   grid-area:slip;
@@ -162,27 +181,21 @@ body[data-page="home"] {
   margin:0 0 8px;
   padding:16px clamp(20px,3vw,48px) 21px;
   background:#fff8e8;
-  border-radius:5px 5px 0 0;
+  border:1px solid #86a765;
+  border-radius:24px;
+  overflow:hidden;
   color:#183d27;
-}
-#delivery .steps::before {
-  content:"";
-  position:absolute;
-  top:-9px;
-  left:calc(50% - 30px);
-  width:60px;
-  height:19px;
-  background:#f3c955;
-  transform:rotate(-4deg);
 }
 #delivery .steps::after {
   content:"";
   position:absolute;
-  inset:100% 0 auto;
-  height:8px;
-  background:linear-gradient(135deg,#fff8e8 25%,transparent 25%) 0 0/16px 16px,
-             linear-gradient(225deg,#fff8e8 25%,transparent 25%) 0 0/16px 16px;
+  inset:auto 0 0;
+  height:17px;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1400 40' preserveAspectRatio='none'%3E%3Cpath d='M0 18C280-23 370 55 700 20S1150-8 1400 18V40H0Z' fill='%23568b3f'/%3E%3C/svg%3E") center / 100% 100%;
 }
+@media(max-width:1150px) { #delivery { --delivery-gutter:35px } }
+@media(max-width:850px) { #delivery { --delivery-gutter:25px } }
+@media(max-width:600px) { #delivery { --delivery-gutter:18px } }
 #delivery .steps article {
   display:grid;
   grid-template-columns:40px minmax(0,1fr);
@@ -203,10 +216,10 @@ body[data-page="home"] {
 #delivery .steps h3 { margin:0; font-size:clamp(18px,1.6vw,24px); line-height:1.25; color:inherit }
 #delivery .steps p { margin:0; font-size:15px; line-height:1.55; color:#455641 }
 @media(max-width:700px) {
-  #delivery .shell { grid-template-columns:1fr; grid-template-areas:"title" "slip" "terms"; gap:23px }
+  #delivery .shell { padding:26px 15px; grid-template-columns:1fr; grid-template-areas:"title" "slip" "terms"; gap:23px }
   #delivery h2 { max-width:none; padding-right:60px; position:relative; font-size:clamp(31px,7vw,42px); text-wrap:initial }
   #delivery h2::before { position:absolute; right:0; top:3px; width:54px; height:40px; margin:0 }
-  #delivery .steps { padding:8px 19px 12px }
+  #delivery .steps { padding:8px 15px 22px }
   #delivery .steps article { grid-template-columns:32px minmax(0,1fr); gap:5px 13px; padding:16px 0 }
   #delivery .step-n { width:32px; height:32px }
   #delivery .price-note { max-width:54ch }
