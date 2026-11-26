@@ -113,18 +113,25 @@ body[data-page="home"] {
 }
 
 
+.campaign {
+  display:flex;
+  align-items:center;
+  min-height:max(340px,calc(100svh - 179px));
+}
 .campaign-photo {
-  width:59%;
-  object-fit:contain;
-  object-position:right center;
-  mask-image:linear-gradient(to right,transparent,rgba(0,0,0,.22) 12%,#000 32%),linear-gradient(to bottom,transparent,#000 12%,#000 88%,transparent);
-  mask-composite:intersect;
+  width:86%;
+  object-position:60% center;
+  mask-image:linear-gradient(to right,transparent 0%,transparent max(24%,210px),rgb(0 0 0 / 14%) max(29%,234px),rgb(0 0 0 / 64%) max(36%,268px),#000 max(46%,310px));
 }
-@media(min-width:601px) {
-  .campaign-photo {width:auto; height:95%; top:2.5%; aspect-ratio:490 / 358}
-}
+.campaign-copy { padding-block:40px 60px }
 @media(max-width:600px) {
-  .campaign-photo {width:62%; height:auto; top:50%; transform:translateY(-50%); aspect-ratio:490 / 358}
+  .campaign {align-items:flex-start; min-height:max(330px,calc(100svh - 179px))}
+  .campaign-photo {
+    top:auto; bottom:0; width:100%; height:76%; object-position:center;
+    mask-image:linear-gradient(to bottom,transparent,#0006 14%,#000 34%);
+  }
+  .campaign-copy {max-width:100%;padding:22px 6% 36px}
+  .campaign h1 {font-size:clamp(32px,9vw,46px)}
 }
 /* A packing slip on a green parcel, with a fruit sticker on the fold. */
 #delivery {
