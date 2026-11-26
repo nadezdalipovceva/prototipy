@@ -79,3 +79,17 @@ nav.category-choices>a,nav.bottom-nav>a{display:flex}nav.mobile-menu>a{display:b
   .site-header .brand > span { display:none }
   .site-header nav a { white-space:nowrap }
 }
+
+/* Cropped watermelon flesh and three pips from the approved cover sketches. */
+body[data-page="home"] {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 98'%3E%3Cpath d='M0 0H160V98C145 70 130 57 100 50C62 42 36 36 0 0Z' fill='%23f04f69' fill-opacity='.23'/%3E%3Cg fill='%23183c1b' fill-opacity='.43'%3E%3Cellipse cx='85' cy='17' rx='3.2' ry='6.3' transform='rotate(52 85 17)'/%3E%3Cellipse cx='119' cy='19' rx='3' ry='6.2' transform='rotate(31 119 19)'/%3E%3Cellipse cx='144' cy='35' rx='3.1' ry='6.4' transform='rotate(10 144 35)'/%3E%3C/g%3E%3C/svg%3E");
+  background-position: right top;
+  background-repeat: no-repeat;
+  background-size: clamp(92px, 11vw, 168px) auto;
+}
+@media (max-width:850px) {
+  body[data-page="home"] { background-size:78px auto }
+}
+@media (max-width:600px) {
+  body[data-page="home"] { background-size:82px auto; background-position:right -3px top -6px }
+}
